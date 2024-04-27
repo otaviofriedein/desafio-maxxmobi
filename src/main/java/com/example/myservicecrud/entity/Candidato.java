@@ -1,7 +1,6 @@
 package com.example.myservicecrud.entity;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.Instant;
 
 import org.hibernate.annotations.CreationTimestamp;
