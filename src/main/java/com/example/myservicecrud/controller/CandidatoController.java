@@ -1,5 +1,6 @@
 package com.example.myservicecrud.controller;
 
+import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.myservicecrud.entity.Candidato;
 import com.example.myservicecrud.service.ICandidatoService;
@@ -29,9 +31,16 @@ public class CandidatoController  {
             return ResponseEntity.status(HttpStatus.CREATED).body(candidato_created);
         }
 
-        @GetMapping("")
-        public Iterable<Candidato> getAll(){
-            return candidatoService.getAll();
+        @GetMapping
+        public Iterable<Candidato> getAll(
+            @RequestParam(required = false) String nome, 
+            @RequestParam(required = false) Date nascimento,
+            @RequestParam(required = false) String sexo,
+            @RequestParam(required = false) Integer nota,
+            @RequestParam(required = false) String sortById,
+            @RequestParam(required = false) Integer sortByName
+        ){
+            return candidatoService.getAll(nome, nascimento, sexo, nota, sortById, sortByName);
         }
 
         @GetMapping("/{id}")

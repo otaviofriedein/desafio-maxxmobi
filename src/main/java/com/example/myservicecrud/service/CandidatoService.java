@@ -1,9 +1,12 @@
 package com.example.myservicecrud.service;
 
 import java.beans.PropertyDescriptor;
+import java.sql.Date;
+import java.util.List;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,8 +25,38 @@ public class CandidatoService implements ICandidatoService {
     }
 
     @Override
-    public Iterable<Candidato> getAll() {
-        return candidatoRepository.findAll();
+    public List<Candidato> getAll(
+            String nome, 
+            Date nascimento,
+            String sexo,
+            Integer nota,
+            String sortById,
+            Integer sortByName) {
+       
+     
+            Specification<Candidato> spec = Specification.where(null);
+
+            if (nome != null) {
+                spec = spec.and((root, query, criteriaBuilder) ->
+                        criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")), "%" + nome.toLowerCase() + "%"));
+            }
+    
+            if (nascimento != null) {
+                spec = spec.and((root, query, criteriaBuilder) ->
+                        criteriaBuilder.equal(root.get("nascimento"), nascimento));
+            }
+    
+            if (sexo != null) {
+                spec = spec.and((root, query, criteriaBuilder) ->
+                        criteriaBuilder.equal(root.get("sexo"), sexo));
+            }
+    
+            if (nota != null) {
+                spec = spec.and((root, query, criteriaBuilder) ->
+                        criteriaBuilder.equal(root.get("nota"), nota));
+            }
+    
+            return candidatoRepository.findAll(spec);
     }
 
     @Override

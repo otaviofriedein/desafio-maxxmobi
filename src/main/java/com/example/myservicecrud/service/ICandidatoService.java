@@ -1,12 +1,18 @@
 package com.example.myservicecrud.service;
 
+import java.sql.Date;
 import com.example.myservicecrud.entity.Candidato;
 
 public interface ICandidatoService {
 
     Candidato create(Candidato candidato);
-
-    Iterable<Candidato> getAll();
+    
+    Iterable<Candidato> getAll( String nome, 
+            Date nascimento,
+            String sexo,
+            Integer nota,
+            String sortById,
+            Integer sortByName);
 
     Candidato get(Integer id);
 
