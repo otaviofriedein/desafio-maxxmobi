@@ -1,6 +1,5 @@
 package com.example.myservicecrud.service;
 
-import com.example.myservicecrud.dto.CandidatoDTO;
 import com.example.myservicecrud.entity.Candidato;
 
 public interface ICandidatoService {
@@ -15,5 +14,5 @@ public interface ICandidatoService {
     
     void delete(Integer id);
 
-    void patch(Integer id, CandidatoDTO candidatoDTO);
+    Candidato patch(Integer id, Candidato candidatoDTO);
 }

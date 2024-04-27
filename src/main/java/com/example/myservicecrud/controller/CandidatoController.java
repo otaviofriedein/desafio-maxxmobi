@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.myservicecrud.dto.CandidatoDTO;
 import com.example.myservicecrud.entity.Candidato;
 import com.example.myservicecrud.service.ICandidatoService;
 
@@ -58,9 +55,10 @@ public class CandidatoController  {
         }
 
         @PatchMapping("/{id}")
-        public ResponseEntity<Void> patch(@PathVariable Integer id, @RequestBody CandidatoDTO candidatoDTO){
-            candidatoService.patch(id, candidatoDTO);
+        public ResponseEntity<Candidato> patch(@PathVariable Integer id, @RequestBody Candidato candidato){
+            Candidato candidato_updated = candidatoService.patch(id, candidato);
 
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.OK).body(candidato_updated);
         }
+
 }
