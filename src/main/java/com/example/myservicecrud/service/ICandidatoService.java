@@ -12,7 +12,7 @@ public interface ICandidatoService {
             String sexo,
             Integer nota,
             String sortById,
-            Integer sortByName);
+            String sortByName);
 
     Candidato get(Integer id);
 

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,19 +24,19 @@ public class CandidatoService implements ICandidatoService {
     public Candidato create(Candidato candidato) {
         return candidatoRepository.save(candidato);        
     }
-
+    
     @Override
     public List<Candidato> getAll(
-            String nome, 
-            Date nascimento,
+        String nome, 
+        Date nascimento,
             String sexo,
             Integer nota,
             String sortById,
-            Integer sortByName) {
-       
-     
-            Specification<Candidato> spec = Specification.where(null);
-
+            String sortByName) {       
+                
+            Specification<Candidato> spec = Specification.where(null);    
+            Sort sort = Sort.unsorted();
+                
             if (nome != null) {
                 spec = spec.and((root, query, criteriaBuilder) ->
                         criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")), "%" + nome.toLowerCase() + "%"));
@@ -55,8 +56,16 @@ public class CandidatoService implements ICandidatoService {
                 spec = spec.and((root, query, criteriaBuilder) ->
                         criteriaBuilder.equal(root.get("nota"), nota));
             }
-    
-            return candidatoRepository.findAll(spec);
+            
+            if (sortById != null) {
+                sort = sort.and(Sort.by(sortById.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "id"));
+            }
+
+            if (sortByName != null) {
+                sort = sort.and(Sort.by(sortByName.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "nome"));
+            }
+           
+            return candidatoRepository.findAll(spec, sort);
     }
 
     @Override

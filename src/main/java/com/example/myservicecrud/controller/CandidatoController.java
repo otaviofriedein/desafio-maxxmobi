@@ -38,7 +38,7 @@ public class CandidatoController  {
             @RequestParam(required = false) String sexo,
             @RequestParam(required = false) Integer nota,
             @RequestParam(required = false) String sortById,
-            @RequestParam(required = false) Integer sortByName
+            @RequestParam(required = false) String sortByName
         ){
             return candidatoService.getAll(nome, nascimento, sexo, nota, sortById, sortByName);
         }
