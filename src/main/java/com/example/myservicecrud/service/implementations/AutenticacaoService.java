@@ -1,7 +1,9 @@
-package com.example.myservicecrud.service;
+package com.example.myservicecrud.service.implementations;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,12 +12,15 @@ import com.example.myservicecrud.dto.LoginUserDto;
 import com.example.myservicecrud.dto.RegisterUserDto;
 import com.example.myservicecrud.entity.User;
 import com.example.myservicecrud.repository.UserRepository;
+import com.example.myservicecrud.service.IAutenticacaoService;
 
 @Service
-public class AutenticacaoService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
+public class AutenticacaoService implements IAutenticacaoService {
+
+    @Autowired
+    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
+    private AuthenticationManager authenticationManager;  
 
     public AutenticacaoService(
         UserRepository userRepository,
@@ -27,6 +32,7 @@ public class AutenticacaoService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Override
     public User signup(RegisterUserDto input) {
         var user = new User()
             .setFullName(input.getFullName())
@@ -36,6 +42,7 @@ public class AutenticacaoService {
         return userRepository.save(user);
     }
 
+    @Override
     public User authenticate(LoginUserDto input) {
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
@@ -47,6 +54,7 @@ public class AutenticacaoService {
         return userRepository.findByEmail(input.getEmail()).orElseThrow();
     }
 
+    @Override
     public List<User> allUsers() {
         List<User> users = new ArrayList<>();
 

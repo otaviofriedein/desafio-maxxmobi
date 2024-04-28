@@ -10,21 +10,17 @@ import com.example.myservicecrud.dto.LoginUserDto;
 import com.example.myservicecrud.dto.RegisterUserDto;
 import com.example.myservicecrud.entity.User;
 import com.example.myservicecrud.responses.LoginResponse;
-import com.example.myservicecrud.service.AutenticacaoService;
-import com.example.myservicecrud.service.TokenService;
+import com.example.myservicecrud.service.IAutenticacaoService;
+import com.example.myservicecrud.service.ITokenService;
 
-@RequestMapping("/auth")
 @RestController
+@RequestMapping("/auth")
 public class AutenticacaoController {
 
         @Autowired
-        private TokenService tokenService;        
-        private AutenticacaoService autenticacaoService;
-    
-        public AutenticacaoController(TokenService tokenService, AutenticacaoService autenticacaoService) {
-            this.tokenService = tokenService;
-            this.autenticacaoService = autenticacaoService;
-        }
+        private IAutenticacaoService autenticacaoService;   
+        @Autowired
+        private ITokenService tokenService;  
     
         @PostMapping("/signup")
         public ResponseEntity<User> register(@RequestBody RegisterUserDto usuarioDTO) {
