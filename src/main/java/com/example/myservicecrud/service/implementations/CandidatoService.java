@@ -1,4 +1,4 @@
-package com.example.myservicecrud.service;
+package com.example.myservicecrud.service.implementations;
 
 import java.beans.PropertyDescriptor;
 import java.sql.Date;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import com.example.myservicecrud.entity.Candidato;
 import com.example.myservicecrud.repository.CandidatoRepository;
+import com.example.myservicecrud.service.ICandidatoService;
 
 @Service
 public class CandidatoService implements ICandidatoService {
