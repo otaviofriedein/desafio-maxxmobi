@@ -31,11 +31,11 @@ public class AutenticacaoController {
     
         @PostMapping("/login")
         public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-            User authenticatedUser = autenticacaoService.authenticate(loginUserDto);
 
-            String jwtToken = tokenService.generateToken(authenticatedUser);
-    
-            LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(tokenService.getExpirationTime());
+            User authenticatedUser = autenticacaoService.authenticate(loginUserDto);          
+
+            String jwtToken = tokenService.generateToken(authenticatedUser);              
+            LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(tokenService.getExpirationTime()); 
     
             return ResponseEntity.ok(loginResponse);
         }
