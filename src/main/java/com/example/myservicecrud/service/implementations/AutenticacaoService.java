@@ -1,8 +1,5 @@
 package com.example.myservicecrud.service.implementations;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -52,14 +49,5 @@ public class AutenticacaoService implements IAutenticacaoService {
         );
 
         return userRepository.findByEmail(input.getEmail()).orElseThrow();
-    }
-
-    @Override
-    public List<User> allUsers() {
-        List<User> users = new ArrayList<>();
-
-        userRepository.findAll().forEach(users::add);
-
-        return users;
     }
 }

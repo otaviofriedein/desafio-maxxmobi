@@ -1,6 +1,5 @@
 package com.example.myservicecrud.controller;
 
-import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +33,7 @@ public class CandidatoController  {
         @GetMapping
         public Iterable<Candidato> getAll(
             @RequestParam(required = false) String nome, 
-            @RequestParam(required = false) Date nascimento,
+            @RequestParam(required = false) String nascimento,
             @RequestParam(required = false) String sexo,
             @RequestParam(required = false) Integer nota,
             @RequestParam(required = false) String sortById,

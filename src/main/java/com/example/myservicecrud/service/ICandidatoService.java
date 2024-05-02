@@ -1,6 +1,5 @@
 package com.example.myservicecrud.service;
 
-import java.sql.Date;
 import com.example.myservicecrud.entity.Candidato;
 
 public interface ICandidatoService {
@@ -9,7 +8,7 @@ public interface ICandidatoService {
     
     Iterable<Candidato> getAll( 
         String nome, 
-        Date nascimento,
+        String nascimento,
         String sexo,
         Integer nota,
         String sortById,

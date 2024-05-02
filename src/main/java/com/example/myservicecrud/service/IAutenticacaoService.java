@@ -11,6 +11,4 @@ public interface IAutenticacaoService {
     User signup(RegisterUserDto input);
 
     User authenticate(LoginUserDto input);
-
-    List<User> allUsers();
 }

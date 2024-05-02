@@ -29,26 +29,26 @@ public class CandidatoService implements ICandidatoService {
     @Override
     public List<Candidato> getAll(
         String nome, 
-        Date nascimento,
-            String sexo,
-            Integer nota,
-            String sortById,
-            String sortByName) {       
+        String nascimento,
+        String sexo,
+        Integer nota,
+        String sortById,
+        String sortByName) {       
                 
             Specification<Candidato> spec = Specification.where(null);    
             Sort sort = Sort.unsorted();
                 
-            if (nome != null) {
+            if (nome != null && nome.trim().isEmpty()) {
                 spec = spec.and((root, query, criteriaBuilder) ->
                         criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")), "%" + nome.toLowerCase() + "%"));
             }
     
-            if (nascimento != null) {
+            if (nascimento != null && nascimento.trim().isEmpty()) {
                 spec = spec.and((root, query, criteriaBuilder) ->
                         criteriaBuilder.equal(root.get("nascimento"), nascimento));
             }
     
-            if (sexo != null) {
+            if (sexo != null && sexo.trim().isEmpty()) {
                 spec = spec.and((root, query, criteriaBuilder) ->
                         criteriaBuilder.equal(root.get("sexo"), sexo));
             }
