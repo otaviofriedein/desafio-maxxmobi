@@ -1,7 +1,7 @@
 package com.example.myservicecrud.service.implementations;
 
 import java.beans.PropertyDescriptor;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -29,44 +29,44 @@ public class CandidatoService implements ICandidatoService {
     @Override
     public List<Candidato> getAll(
         String nome, 
-        String nascimento,
+        Date nascimento,
         String sexo,
         Integer nota,
         String sortById,
         String sortByName) {       
                 
-            Specification<Candidato> spec = Specification.where(null);    
-            Sort sort = Sort.unsorted();
-                
-            if (nome != null && nome.trim().isEmpty()) {
-                spec = spec.and((root, query, criteriaBuilder) ->
-                        criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")), "%" + nome.toLowerCase() + "%"));
-            }
-    
-            if (nascimento != null && nascimento.trim().isEmpty()) {
-                spec = spec.and((root, query, criteriaBuilder) ->
-                        criteriaBuilder.equal(root.get("nascimento"), nascimento));
-            }
-    
-            if (sexo != null && sexo.trim().isEmpty()) {
-                spec = spec.and((root, query, criteriaBuilder) ->
-                        criteriaBuilder.equal(root.get("sexo"), sexo));
-            }
-    
-            if (nota != null) {
-                spec = spec.and((root, query, criteriaBuilder) ->
-                        criteriaBuilder.equal(root.get("nota"), nota));
-            }
+        Specification<Candidato> spec = Specification.where(null);    
+        Sort sort = Sort.unsorted();
             
-            if (sortById != null) {
-                sort = sort.and(Sort.by(sortById.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "id"));
-            }
+        if (nome != null && nome.length() > 0) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")), "%" + nome.toLowerCase() + "%"));
+        }
 
-            if (sortByName != null) {
-                sort = sort.and(Sort.by(sortByName.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "nome"));
-            }
-           
-            return candidatoRepository.findAll(spec, sort);
+        if (nascimento != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("nascimento"), nascimento));
+        }
+
+        if (sexo != null && sexo.length() > 0) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("sexo"), sexo));
+        }
+
+        if (nota != null && nota != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("nota"), nota));
+        }
+        
+        if (sortById != null) {
+            sort = sort.and(Sort.by(sortById.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "id"));
+        }
+
+        if (sortByName != null) {
+            sort = sort.and(Sort.by(sortByName.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "nome"));
+        }
+        
+        return candidatoRepository.findAll(spec, sort);
     }
 
     @Override
