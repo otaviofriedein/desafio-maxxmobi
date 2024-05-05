@@ -17,26 +17,26 @@ import com.example.myservicecrud.service.ITokenService;
 @RequestMapping("/auth")
 public class AutenticacaoController {
 
-        @Autowired
-        private IAutenticacaoService autenticacaoService;   
-        @Autowired
-        private ITokenService tokenService;  
-    
-        @PostMapping("/signup")
-        public ResponseEntity<User> register(@RequestBody RegisterUserDto usuarioDTO) {
-            User registeredUser = autenticacaoService.signup(usuarioDTO);
-    
-            return ResponseEntity.ok(registeredUser);
-        }
-    
-        @PostMapping("/login")
-        public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
+    @Autowired
+    private IAutenticacaoService autenticacaoService;   
+    @Autowired
+    private ITokenService tokenService;  
 
-            User authenticatedUser = autenticacaoService.authenticate(loginUserDto);          
+    @PostMapping("/signup")
+    public ResponseEntity<User> register(@RequestBody RegisterUserDto usuarioDTO) {
+        User registeredUser = autenticacaoService.signup(usuarioDTO);
 
-            String jwtToken = tokenService.generateToken(authenticatedUser);              
-            LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(tokenService.getExpirationTime()); 
-    
-            return ResponseEntity.ok(loginResponse);
-        }
+        return ResponseEntity.ok(registeredUser);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
+
+        User authenticatedUser = autenticacaoService.authenticate(loginUserDto);          
+
+        String jwtToken = tokenService.generateToken(authenticatedUser);              
+        LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(tokenService.getExpirationTime()); 
+
+        return ResponseEntity.ok(loginResponse);
+    }
+}
