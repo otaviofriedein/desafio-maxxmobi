@@ -11,8 +11,8 @@ public interface ICandidatoService {
             Date nascimento,
             String sexo,
             Integer nota,
-            String sortById,
-            String sortByName);
+            String sortBy,
+            String order);
 
     Candidato get(Integer id);
 

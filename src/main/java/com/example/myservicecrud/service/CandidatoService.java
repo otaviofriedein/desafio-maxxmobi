@@ -31,8 +31,8 @@ public class CandidatoService implements ICandidatoService {
         Date nascimento,
             String sexo,
             Integer nota,
-            String sortById,
-            String sortByName) {       
+            String sortBy,
+            String order) {       
                 
             Specification<Candidato> spec = Specification.where(null);    
             Sort sort = Sort.unsorted();
@@ -57,12 +57,8 @@ public class CandidatoService implements ICandidatoService {
                         criteriaBuilder.equal(root.get("nota"), nota));
             }
             
-            if (sortById != null) {
-                sort = sort.and(Sort.by(sortById.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "id"));
-            }
-
-            if (sortByName != null) {
-                sort = sort.and(Sort.by(sortByName.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, "nome"));
+            if (sortBy != null) {
+                sort = sort.and(Sort.by(order.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
             }
            
             return candidatoRepository.findAll(spec, sort);
