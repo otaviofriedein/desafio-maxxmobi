@@ -1,6 +1,7 @@
 package com.example.myservicecrud.service;
 
-import java.sql.Date;
+import java.util.Date;
+
 import com.example.myservicecrud.entity.Candidato;
 
 public interface ICandidatoService {
