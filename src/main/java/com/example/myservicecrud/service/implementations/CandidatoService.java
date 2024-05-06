@@ -1,4 +1,4 @@
-package com.example.myservicecrud.service.implementations;
+﻿package com.example.myservicecrud.service.implementations;
 
 import java.beans.PropertyDescriptor;
 import java.util.Date;
@@ -100,7 +100,7 @@ public class CandidatoService implements ICandidatoService {
         Candidato candidato_record = candidatoRepository
                 .findById(id)
                 .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato n�o encontrado: " + id));
+                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato não encontrado: " + id));
 
         BeanWrapper sourceWrapper = new BeanWrapperImpl(candidato);
         BeanWrapper targetWrapper = new BeanWrapperImpl(candidato_record);
