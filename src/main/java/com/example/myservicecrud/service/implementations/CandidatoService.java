@@ -68,7 +68,7 @@ public class CandidatoService implements ICandidatoService {
         Candidato candidato = candidatoRepository
                 .findById(id)
                 .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato n�o encontrado: " + id));
+                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato não encontrado: " + id));
 
         return candidato;
     }
@@ -78,7 +78,7 @@ public class CandidatoService implements ICandidatoService {
         candidatoRepository
                 .findById(id)
                 .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato n�o encontrado: " + id));
+                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato não encontrado: " + id));
 
         candidato.setId(id);
 
@@ -90,7 +90,7 @@ public class CandidatoService implements ICandidatoService {
         Candidato candidato = candidatoRepository
                 .findById(id)
                 .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato n�o encontrado: " + id));
+                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato não encontrado: " + id));
 
         candidatoRepository.delete(candidato);
     }
