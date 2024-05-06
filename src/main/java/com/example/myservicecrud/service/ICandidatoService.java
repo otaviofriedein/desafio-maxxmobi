@@ -8,13 +8,12 @@ public interface ICandidatoService {
 
     Candidato create(Candidato candidato);
     
-    Iterable<Candidato> getAll( 
-        String nome, 
-        Date nascimento,
-        String sexo,
-        Integer nota,
-        String sortById,
-        String sortByName);
+    Iterable<Candidato> getAll( String nome, 
+            Date nascimento,
+            String sexo,
+            Integer nota,
+            String sortBy,
+            String order);
 
     Candidato get(Integer id);
 

@@ -38,10 +38,10 @@ public class CandidatoController  {
             @RequestParam(required = false) Date nascimento,
             @RequestParam(required = false) String sexo,
             @RequestParam(required = false) Integer nota,
-            @RequestParam(required = false) String sortById,
-            @RequestParam(required = false) String sortByName
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String order
         ){
-            return candidatoService.getAll(nome, nascimento, sexo, nota, sortById, sortByName);
+            return candidatoService.getAll(nome, nascimento, sexo, nota, sortBy, order);
         }
 
         @GetMapping("/{id}")
