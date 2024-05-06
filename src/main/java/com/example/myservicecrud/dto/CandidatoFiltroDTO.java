@@ -12,7 +12,7 @@ public class CandidatoFiltroDTO {
 
     public Integer nota;
 
-    public String order_by_id;
+    public String sortById;
     
-    public String order_by_name;
+    public String sortByName;
 }
