@@ -44,6 +44,11 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.5</version>
 		</dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+        </dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -76,6 +81,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>my_service_crud</finalName>
 	</build>
 
 </project>
