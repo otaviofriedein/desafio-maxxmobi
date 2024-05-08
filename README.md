@@ -27,21 +27,15 @@ Para executar a aplicação localmente, siga estas etapas:
 
 1. Certifique-se de que o Docker está instalado e em execução na sua máquina.
 2. Navegue até o diretório raiz do projeto no terminal.
-3. Execute o seguinte comando Maven para compilar o projeto:
+3. Execute o seguinte comando Maven para compilar e rodar o projeto:
 
 ```
-mvn clean package
-```
-
-4. Após a conclusão da compilação, execute o seguinte comando para iniciar a aplicação com Docker Compose:
-
-```
-docker-compose up --build
+mvn spring-boot:run
 ```
 
 Isso iniciará a aplicação e o banco de dados MySQL em contêineres Docker.
 
-5. Acesse a aplicação em `http://localhost:8080`.
+4. Acesse a aplicação em `http://localhost:8080`.
 
 ## Contribuindo
 
