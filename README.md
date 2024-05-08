@@ -6,7 +6,7 @@ Este é um projeto Spring Boot que requer Java JDK 17+ e Maven para execução. 
 
 Certifique-se de ter os seguintes pré-requisitos instalados em sua máquina:
 
-- [Java JDK 17+](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
+- [Java JDK 17+](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [Maven](https://maven.apache.org/)
 - [Docker](https://www.docker.com/)
 
