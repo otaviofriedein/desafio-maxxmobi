@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,16 +25,20 @@ public class Candidato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    @Column(nullable = false, length = 100)
+        
+    @NotNull(message = "nome obrigatório")
+    @Column(nullable = false, length = 200) 
     private String nome;
 
+    @NotNull(message = "nascimento obrigatório")
     @Column(nullable = false) 
-    private Date nascimento;    
+    private Date nascimento;
 
+    @NotNull(message = "sexo obrigatório")
     @Column(nullable = false, length = 1)
     private String sexo = "M";
 
+    @NotNull(message = "nota obrigatório")
     @Column(nullable = false) 
     private Integer nota;
 

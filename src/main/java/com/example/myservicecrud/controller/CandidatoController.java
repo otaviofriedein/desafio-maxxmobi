@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.myservicecrud.entity.Candidato;
 import com.example.myservicecrud.service.ICandidatoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/candidato")
@@ -24,7 +25,7 @@ public class CandidatoController  {
         private ICandidatoService candidatoService;
 
         @PostMapping("")
-        public ResponseEntity<Candidato> create(@RequestBody Candidato candidato){
+        public ResponseEntity<Candidato> create(@Valid @RequestBody Candidato candidato){
             Candidato candidato_created = candidatoService.create(candidato);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(candidato_created);
@@ -48,7 +49,7 @@ public class CandidatoController  {
         }
 
         @PutMapping("/{id}")
-        public ResponseEntity<Candidato> put(@PathVariable Integer id, @RequestBody Candidato candidato){   
+        public ResponseEntity<Candidato> put(@PathVariable Integer id, @Valid @RequestBody Candidato candidato){   
           
             Candidato candidato_updated =  candidatoService.update(id, candidato);
 
@@ -63,7 +64,7 @@ public class CandidatoController  {
         }
 
         @PatchMapping("/{id}")
-        public ResponseEntity<Candidato> patch(@PathVariable Integer id, @RequestBody Candidato candidato){
+        public ResponseEntity<Candidato> patch(@PathVariable Integer id, @Valid @RequestBody Candidato candidato){
             Candidato candidato_updated = candidatoService.patch(id, candidato);
 
             return ResponseEntity.status(HttpStatus.OK).body(candidato_updated);
