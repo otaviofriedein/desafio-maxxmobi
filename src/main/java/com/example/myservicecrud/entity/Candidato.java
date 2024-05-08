@@ -25,29 +25,30 @@ public class Candidato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(length = 100)
+    @Column(nullable = false, length = 100)
     private String nome;
 
-    private Date nascimento;
+    @Column(nullable = false) 
+    private Date nascimento;    
+
+    @Column(nullable = false, length = 1)
+    private String sexo = "M";
+
+    @Column(nullable = false) 
+    private Integer nota;
+
+    @Column(nullable = true, length = 200)
+    private String logradouro;
+
+    @Column(nullable = true, length = 50)
+    private String bairro;
+
+    @Column(nullable = true, length = 50)
+    private String cidade;
+
+    @Column(nullable = true, length = 2)
+    private String uf;
 
     @CreationTimestamp(source = SourceType.DB)
     private Instant data_criacao;
-
-    @Column(length = 1)
-    private String sexo = "M";
-
-    private Integer nota;
-
-    @Column(length = 200, nullable = true)
-    private String logradouro;
-
-    @Column(length = 50, nullable = true)
-    private String bairro;
-
-    @Column(length = 50, nullable = true)
-    private String cidade;
-
-    @Column(length = 2, nullable = true)
-    private String uf;
-
 }
