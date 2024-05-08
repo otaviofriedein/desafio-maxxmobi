@@ -35,7 +35,7 @@ mvn spring-boot:run
 
 Isso iniciará a aplicação e o banco de dados MySQL em contêineres Docker.
 
-4. Acesse a aplicação em `http://localhost:8080`.
+Logo, a aplicação banckend estará disponível através do endereço `http://localhost:8080` e você já pode iniciar a aplicação frontend.
 
 ## Contribuindo
 
