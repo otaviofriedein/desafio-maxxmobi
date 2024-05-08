@@ -1,15 +1,14 @@
 package com.example.myservicecrud.service;
 
-import java.util.Date;
-
 import com.example.myservicecrud.entity.Candidato;
 
 public interface ICandidatoService {
 
     Candidato create(Candidato candidato);
-    
-    Iterable<Candidato> getAll( String nome, 
-            Date nascimento,
+
+    Iterable<Candidato> getAll(
+            String nome,
+            String nascimento,
             String sexo,
             Integer nota,
             String sortBy,
@@ -18,7 +17,7 @@ public interface ICandidatoService {
     Candidato get(Integer id);
 
     Candidato update(Integer id, Candidato candidato);
-    
+
     void delete(Integer id);
 
     Candidato patch(Integer id, Candidato candidatoDTO);

@@ -1,7 +1,7 @@
 package com.example.myservicecrud.service.implementations;
 
 import java.beans.PropertyDescriptor;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -29,7 +29,7 @@ public class CandidatoService implements ICandidatoService {
     @Override
     public List<Candidato> getAll(
             String nome,
-            Date nascimento,
+            String nascimento,
             String sexo,
             Integer nota,
             String sortBy,
@@ -43,9 +43,9 @@ public class CandidatoService implements ICandidatoService {
                     .like(criteriaBuilder.lower(root.get("nome")), "%" + nome.toLowerCase() + "%"));
         }
 
-        if (nascimento != null) {
-            spec = spec
-                    .and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("nascimento"), nascimento));
+        if (nascimento != null && nascimento.length() > 0) {
+            LocalDate date = LocalDate.parse(nascimento);
+            spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("nascimento"), date));
         }
 
         if (sexo != null && sexo.length() > 0) {
