@@ -57,7 +57,7 @@ public class CandidatoService implements ICandidatoService {
         }
 
         if (sortBy != null) {
-            sort = sort.and(Sort.by(order.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
+            sort = sort.and(Sort.by(order.equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
         }
 
         return candidatoRepository.findAll(spec, sort);
